@@ -1,0 +1,47 @@
+h1 {
+    text-align: center;
+    font-size: 60px;
+}
+
+table {
+    margin: auto;
+    border-style: solid;
+}
+
+th, 
+td {
+    font-family: Helvetica, sans-serif;
+    width: 75px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid rgba(0, 0, 0, 0.9);
+}
+
+.alignLeft {
+    text-align: left;
+    padding-left: 10px;
+}
+
+table.fiveDice {
+    width: 20%;
+    height: 55px;
+    margin: auto;
+    text-align: center;
+}
+
+.dottedBorder {
+    border-style: solid ;
+}
+
+.waardes {
+    font-size: 12px;
+}
+
+#rollDice {
+    margin: 20px 53% 50px 47%;
+}
+
+#deel1, #deel2 {
+    text-transform: uppercase;
+}

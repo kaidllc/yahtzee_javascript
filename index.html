@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Yahtzee</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>Yathzee</h1>
+        </header>
+        <table class="fiveDice" id="fiveDice">
+            <tbody>
+                <tr>
+                    <td class="dice" id="dice1"></td>
+                    <td class="dice" id="dice2"></td>
+                    <td class="dice" id="dice3"></td>
+                    <td class="dice" id="dice4"></td>
+                    <td class="dice" id="dice5"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="button" id="rollDice" onclick="playGame()">Gooien!</button>
+
+        <table class="scoreBlock">
+            <thead>
+                <tr>
+                    <th colspan="2" class="alignLeft", id="deel1">Deel 1</td>
+                    <th>Puntentelling</td>
+                    <th>Spel 1</td>
+                    <th>Spel 2</td>
+                    <th>Spel 3</td>
+                    <th>Spel 4</td>
+                    <th>Spel 5</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="alignLeft">Enen</td>
+                    <td class="dicePreview"></td>
+                    <td class="waardes">Waardes van alle enen</td>
+                    <td class="score1" id="eenSpel1"></td>
+                    <td ></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Tweeën</td>
+                    <td class="dicePreview"></td>
+                    <td class="waardes">Waardes van alle tweeën</td>
+                    <td class="score1" id="tweeSpel1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Drieën</td>
+                    <td class="dicePreview"></td>
+                    <td class="waardes">Waardes van alle drieën</td>
+                    <td class="score1" id="drieSpel1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Vieren</td>
+                    <td class="dicePreview"></td>
+                    <td class="waardes">Waardes van alle vieren</td>
+                    <td class="score1" id="vierSpel1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Vijven</td>
+                    <td class="dicePreview"></td>
+                    <td class="waardes">Waardes van alle vijven</td>
+                    <td class="score1" id="vijfSpel1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Zessen</td>
+                    <td class="dicePreview"></td>
+                    <td class="waardes">Waardes van alle zessen</td>
+                    <td class="score1" id="zesSpel1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="alignLeft">Totaal aantal punten</td>
+                    <td id="arrow"><img src="5-2-arrow-transparent.png" height='15px' width='50px'></img></td>
+                    <td class="score1" id="totalUpperPart1" ></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Bonus</td>
+                    <td>als totaal 63 of meer is</td>
+                    <td>35 punten</td>
+                    <td class="score1" id="bonus1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Totaal</td>
+                    <td>van de bovenste helft</td>
+                    <td id="arrow"><img src="5-2-arrow-transparent.png" height='15px' width='50px'></img></td>
+                    <td class="score1" id="totalUpperPartWithBonus1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th colspan="8" class="alignLeft" id="deel2">Deel 2</th>
+                </tr>
+                <tr>
+                    <td class="alignLeft">3 of a kind</td>
+                    <td>3 dezelfde</td>
+                    <td>totaal v.d. 5 stenen</td>
+                    <td class="part2 score1" id="3ofakind1"></td>
+                    <td id="3ofakind2"></td>
+                    <td id="3ofakind3"></td>
+                    <td id="3ofakind4"></td>
+                    <td id="3ofakind5"></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">4 of a kind</td>
+                    <td>4 dezelfde</td>
+                    <td>totaal v.d. 5 stenen</td>
+                    <td class="part2 score1" id="4ofakind1"></td>
+                    <td id="4ofakind2"></td>
+                    <td id="4ofakind3"></td>
+                    <td id="4ofakind4"></td>
+                    <td id="4ofakind5"></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Full house</td>
+                    <td>3 + 2 dezelfde</td>
+                    <td>25 punten</td>
+                    <td class="part2 score1" id="fullHouse1"></td>
+                    <td id="fullHouse2"></td>
+                    <td id="fullHouse3"></td>
+                    <td id="fullHouse4"></td>
+                    <td id="fullHouse5"></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Kleine straat</td>
+                    <td>4 opeenvolgende nummers</td>
+                    <td>30 punten</td>
+                    <td class="part2 score1" id="kleineStraat1"></td>
+                    <td id="kleineStraat2"></td>
+                    <td id="kleineStraat3"></td>
+                    <td id="kleineStraat4"></td>
+                    <td id="kleineStraat5"></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Grote straat</td>
+                    <td>4 opeenvolgende nummers</td>
+                    <td>40 punten</td>
+                    <td class="part2 score1" id="groteStraat1"></td>
+                    <td id="groteStraat2"></td>
+                    <td id="groteStraat3"></td>
+                    <td id="groteStraat4"></td>
+                    <td id="groteStraat5"></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Yathzee</td>
+                    <td>5 dezelfde stenen</td>
+                    <td>50 punten</td>
+                    <td class="part2 score1" id="yathzee1"></td>
+                    <td id="yathzee2"></td>
+                    <td id="yathzee3"></td>
+                    <td id="yathzee4"></td>
+                    <td id="yathzee5"></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Chance</td>
+                    <td>Vrije keus</td>
+                    <td>totaal v.d. 5 stenen</td>
+                    <td class="part2 score1" id="chance1"></td>
+                    <td id="chance2"></td>
+                    <td id="chance3"></td>
+                    <td id="chance4"></td>
+                    <td id="chance5"></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Totaal</td>
+                    <td>van de onderste helft</td>
+                    <td id="arrow"><img src="5-2-arrow-transparent.png" height='15px' width='50px'></img></td>
+                    <td class="score1" id="totalLowerPart1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="alignLeft">Totaal</td>
+                    <td>van de bovenste helft</td>
+                    <td id="arrow"><img src="5-2-arrow-transparent.png" height='15px' width='50px'></img></td>
+                    <td class="score1" id="totalUpperPartDown1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="alignLeft">Totaal generaal</td>
+                    <td id="arrow"><img src="5-2-arrow-transparent.png" height='15px' width='50px'></img></td>
+                    <td class="score1" id="totalGeneral1"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
